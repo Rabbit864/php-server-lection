@@ -1,0 +1,487 @@
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/simple.min.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="highlight-phpstorm-light-theme.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap"
+    />
+    <style>
+      :root {
+        --r-main-font: 'Roboto', 'Noto Color Emoji', sans-serif;
+        --r-heading-font: 'Roboto', 'Noto Color Emoji', sans-serif;
+        --r-code-font: 'Roboto Mono', 'Noto Color Emoji', monospace;
+        --r-block-margin: 10px;
+      }
+      .reveal pre {
+        font-size: 0.5em;
+      }
+      .nohighlight {
+        padding: 1em !important;
+      }
+      .reveal .hljs {
+        min-height: auto;
+      }
+      td.hljs-ln-code {
+        white-space: pre;
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6,
+      .reveal pre,
+      .reveal p,
+      .reveal img {
+        margin: 0 var(--r-block-margin) calc(var(--r-block-margin) * 2);
+      }
+      .reveal pre {
+        width: auto;
+      }
+
+      .reveal .r-stack > * {
+        margin: 0;
+      }
+      .horizontal {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .horizontal > * {
+        flex-grow: 1;
+      }
+      .horizontal-half > * {
+        flex-grow: 0 !important;
+        width: calc(50% - var(--r-block-margin) * 2) !important;
+      }
+
+      ul {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 30px;
+      }
+    </style>
+    <title>PHP SERVER</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>PHP SERVER</h2>
+        </section>
+
+        <section>
+          <h3>Определение Сервер</h3>
+          <p>
+            Сервером в большинстве случаев называют непрерывно работающий
+            компьютер, который выполняет какую-либо сервисную задачу и даёт
+            клиентам доступ к своим ресурсам. Также, сервером могут называть
+            программу, которая выполняет аналогичные функции.
+          </p>
+        </section>
+
+        <section>
+          <h3>Виды серверов</h3>
+          <h5>Apache</h5>
+          <p>
+            Apache («Апачи», Apache HTTP Server) — это открытое
+            кросс-платформенное программное обеспечение для размещения и
+            поддержки веб-сервера.
+          </p>
+          <img src="img/apache.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Виды серверов</h3>
+          <h5>NGINX</h5>
+          <p>
+            NGINX — это веб-сервер и почтовый прокси, который работает под
+            управлением операционных систем семейства Linux/Unix и Microsoft. В
+            отличие от других продуктов данного сегмента, Nginx использует иной
+            принцип обработки входящих данных. ПО разбивает каждый запрос
+            пользователя на несколько мелких, упрощая таким образом обработку
+            каждого. В терминологии Nginx они получили название рабочее
+            соединение.
+          </p>
+          <img src="img/nginx.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Пример использования в связке apache и nginx</h3>
+          <img src="img/nginx-apache.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Сравнение двух серверов</h3>
+          <img src="img/apache-vs-nginx.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Сравнение двух серверов</h3>
+          <img src="img/apache-vs-nginx-2.png" alt="" />
+        </section>
+
+        <section>
+          <h4>Запуск встроенного php сервера</h4>
+          <p>
+            Для запуска php сервера используется команда php –S localhost:8000
+          </p>
+          <p>
+            Веб-сервер запускает только один однопоточный процесс, поэтому
+            PHP-приложения будут останавливаться, если запрос блокируется.
+            Запросы URI обслуживаются из текущего рабочего каталога, в котором
+            был запущен PHP, если только не используется опция -t для указания
+            явного корня документа. Если запрос URI не указывает файл, то
+            возвращается либо index.php, либо index.html в указанном каталоге.
+            Если ни один из файлов не существует, поиск index.php и index.html
+            будет продолжен в родительском каталоге и так далее, пока один из
+            них не будет найден или пока не будет достигнут корень документа.
+            Если найден index.php или index.html, он возвращается
+          </p>
+        </section>
+
+        <section>
+          <h3>Разъяснения про localhost</h3>
+          <p>
+            За каждым именем в URL-адресах веб-сайтов в Интернете стоит ряд
+            цифр, называемых IP-адресами (интернет-протоколами). IP означает
+            Интернет-протокол и является первым уровнем сети, который будет
+            использоваться в Интернете. 127.0.0.1 IP Этот конкретный IP-адрес,
+            также известный как локальный хост, является основой, для которой
+            обрабатываются петлевые сетевые подключения. Loopback означает
+            «вернуться назад», и он делает 127.0.0.1, потому что это адрес
+            вашего устройства.
+          </p>
+        </section>
+
+        <section>
+          <h3>Если мы запустим php сервер в пустом каталоге</h3>
+          <img src="img/php_not_found.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Добавляем index.php</h3>
+          <img src="img/add-index-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Заполняем наш index.php</h3>
+          <img src="img/first-content-index-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Наш результат</h3>
+          <img src="img/result-first-content-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Создаём в папке homepage.php</h3>
+          <img src="img/homepage-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Открываем наш homepage.php в браузере</h3>
+          <img src="img/view-homepage-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Добавляем php код в html</h3>
+          <img src="img/add-code-homepage-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Результат добавления кода</h3>
+          <img src="img/view-add-code-home-page-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Процесс запроса</h3>
+          <p>
+            Рассмотрим по этапно как происходить запрос от пользователя к
+            серверу и как в нем участвует php
+          </p>
+        </section>
+
+        <section>
+          <h3>Процесс запроса - этап 1</h3>
+          <p>Сначала пользователь отправляет запрос на сервер</p>
+          <img src="img/php-request-step-1.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Процесс запроса - этап 2</h3>
+          <p>
+            Далее если сервер видит php файл, то он его передает php
+            интерпретатору
+          </p>
+          <img src="img/php-request-step-2.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Процесс запроса - этап 3</h3>
+          <p>
+            Далее php обработывает запрос выполняет все функции, обращается к
+            базе данных, или к файловой системе если нужно
+          </p>
+          <img src="img/php-request-step-3.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Процесс запроса - этап 4</h3>
+          <p>
+            Послее такого как php обработал запрос, он ответ возвращает серверу,
+            а сервер в свою очередь клиенту
+          </p>
+          <img src="img/php-request-step-4.png" alt="" />
+        </section>
+
+        <section>
+          <h2>HTTP</h2>
+        </section>
+
+        <section>
+          <h3>HTTP</h3>
+          <p>
+            HTTP — протокол прикладного уровня передачи данных, изначально — в
+            виде гипертекстовых документов в формате HTML, в настоящее время
+            используется для передачи произвольных данных.
+          </p>
+        </section>
+
+        <section>
+          <h3>Блокировка HTTP</h3>
+          <p>
+            Head-of-Line Blocking или упростим до "блокировка соединения". Как
+            происходит - у нас есть канал для передачи данных, мы отправили
+            запрос в этот канал, ждём ответа, получили полностью ответ,
+            отправили следующий запрос.
+          </p>
+        </section>
+
+        <section>
+          <h3>Версия HTTP 1.1</h3>
+          <p>
+            Первая версия протокола http требовала дожидаться получения ответа
+            перед отправлением следующего запроса в рамках одного соединения. Во
+            второй версии протокола - это исправили, соединение может
+            использоваться без ожидания завершения уже отправленного запроса.
+          </p>
+        </section>
+
+        <section>
+          <h3>Версия HTTP 2</h3>
+          <p>
+            Первая версия протокола http требовала дожидаться получения ответа
+            перед отправлением следующего запроса в рамках одного соединения. Во
+            второй версии протокола - это исправили, соединение может
+            использоваться без ожидания завершения уже отправленного запроса.
+          </p>
+        </section>
+
+        <section>
+          <h3>Версия HTTP 3</h3>
+          <p>
+            Проблема блокировки была решена в версии 2 — но только на уровне
+            http протокола. На транспортном уровне tcp она все еще есть в виде
+            обязательного последовательного получения пакетов. Поэтому версию 3
+            собрали на протоколе udp, в которой этой особенности нет, и назвали
+            это QUIC.
+          </p>
+        </section>
+
+        <section>
+          <h3>URI</h3>
+          <p>
+            URI — символьная строка, позволяющая идентифицировать какой-либо
+            ресурс: документ, изображение, файл, службу, ящик электронной почты
+            и т. д.
+          </p>
+          <p>
+            URL — это URI, который, помимо идентификации ресурса, предоставляет
+            ещё и информацию о местонахождении этого ресурса. А URN — это URI,
+            который только идентифицирует ресурс в определённом пространстве
+            имён
+          </p>
+        </section>
+
+        <section>
+          <h3>Состав URL</h3>
+          <img src="img/url.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Ping pong система</h3>
+          <img src="img/http-clien-server.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Базовая структура request/response</h3>
+          <img src="img/http-structure.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Состав http request</h3>
+          <img src="img/http-request.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP метод GET</h3>
+          <img src="img/method_get.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP метод POST</h3>
+          <img src="img/method-post.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Ещё http методы</h3>
+          <ul>
+            <li>
+              HEAD - метод HEAD запрашивает ответ, идентичный запросу GET, но
+              без тела ответа.
+            </li>
+            <li>
+              PUT - метод PUT заменяет все текущие представления целевого
+              ресурса содержимым запроса .
+            </li>
+            <li>DELETE - метод DELETE удаляет указанный ресурс</li>
+            <li>
+              CONNECT - метод CONNECT устанавливает туннель к серверу,
+              идентифицированному целевым ресурсом.
+            </li>
+            <li>PATCH - метод PATCHприменяет частичные изменения к ресурсу.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>HTTP ответ</h3>
+          <img src="img/http-response.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP коды состояний</h3>
+          <img src="img/code-status-1.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP коды состояний</h3>
+          <img src="img/code-status-2.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP коды состояний</h3>
+          <img src="img/code-status-3.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP коды состояний</h3>
+          <img src="img/code-status-3.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTP коды состояний</h3>
+          <img src="img/code-status-4.png" alt="" />
+        </section>
+
+        <section>
+          <h3>HTTPS</h3>
+          <p>
+            HTTPS (HyperText Transfer Protocol Secure) — это расширение
+            протокола HTTP, которое поддерживает шифрование. Какие возможности
+            имеет безопасное соединение HTTPS:
+          </p>
+          <p>
+            Шифрование. Все данные передаются в зашифрованном виде.
+            Злоумышленники не могут перехватить информацию, которой обмениваются
+            пользователи на сайте, и не могут отследить их действия.
+          </p>
+          <p>
+            Сохранение данных. Все изменения данных фиксируются. Если
+            злоумышленник пытался взломать защиту, это отобразится в сохранённых
+            данных.
+          </p>
+        </section>
+
+        <section>
+          <h2>PHP in SERVER</h2>
+        </section>
+
+        <section>
+          <h3>Суперглобальные переменные PHP</h3>
+          <img src="img/variables-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>PHP + HTML</h3>
+          <img src="img/html_php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Вывод переменных</h3>
+          <img src="img/server-html-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Результат вывода $_SERVER</h3>
+          <img src="img/result-$_server.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Вывод $_GET</h3>
+          <img src="img/view-variable-get.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Формы</h3>
+          <img src="img/forms.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Формы</h3>
+          <img src="img/view_forms.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Добавляем логику на php</h3>
+          <img src="img/form-logic-php.png" alt="" />
+        </section>
+
+        <section>
+          <h3>Результат</h3>
+          <img src="img/result-php-logic.png" alt="" />
+        </section>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/highlight/highlight.min.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        plugins: [RevealHighlight],
+        slideNumber: true,
+        autoAnimate: true,
+      });
+    </script>
+  </body>
+</html>
